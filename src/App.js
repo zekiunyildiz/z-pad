@@ -1,16 +1,25 @@
-import { useState } from 'react';
-import './App.css';
-import Main from './Main';
-import Sidebar from './Sidebar';
+import { useState } from "react";
+import uuid from "react-uuid";
+import "./App.css";
+import Main from "./Main";
+import Sidebar from "./Sidebar";
 
 function App() {
+  const [notes, setNotes] = useState([]);
 
-  const [notes, setNotes] = useState([])
+  const onAddNote = () => {
+    const newNote = {
+      id: uuid(),
+      title: "Untitled Note",
+      body:"",
+      lastModify: Date.now()
+    };
+  };
 
   return (
     <div className="App">
-      <Sidebar notes={notes}/>
-      <Main/>
+      <Sidebar notes={notes} onAddNote={onAddNote} />
+      <Main />
     </div>
   );
 }
