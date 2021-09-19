@@ -12,13 +12,22 @@ function App() {
       id: uuid(),
       title: "Untitled Note",
       body:"",
-      lastModify: Date.now()
+      lastModify: Date.now(),
     };
+
+
+    setNotes([newNote, ...notes])
+
+  };
+
+
+  const onDeleteNote = (idToDelete) =>{
+    setNotes(notes.filter((note)=>note.id !== idToDelete ));
   };
 
   return (
     <div className="App">
-      <Sidebar notes={notes} onAddNote={onAddNote} />
+      <Sidebar notes={notes} onAddNote={onAddNote} onDeleteNote={onDeleteNote} />
       <Main />
     </div>
   );
